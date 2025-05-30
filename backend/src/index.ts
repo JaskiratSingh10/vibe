@@ -18,6 +18,7 @@ import {usersModuleOptions} from 'modules/users';
 import * as firebase from 'firebase-admin';
 import {app} from 'firebase-admin';
 import {authModuleOptions} from 'modules';
+import genaiRoutes from './modules/genai/genai.routes';
 
 export const application = Express();
 
@@ -44,6 +45,9 @@ export const ServiceFactory = (
   service.get('/main/healthcheck', (req, res) => {
     res.send('Hello World');
   });
+
+  // Integrate GenAI routes
+  service.use('/genai', genaiRoutes);
 
   console.log('--------------------------------------------------------');
   console.log('Routes Handler');
